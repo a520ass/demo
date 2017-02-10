@@ -9,4 +9,6 @@ import com.hf.spring.mybatis.entity.User;
 public interface UserMapper {
 	public List<User> findAll();
 	public User findByUsername(String username);
+	public void delete(User user);
+	public void save(User user);
 }

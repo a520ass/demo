@@ -2,6 +2,7 @@ package com.hf.test;
 
 
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
 
@@ -24,7 +25,7 @@ public class KrtServiceTest{
 	@Test
 	public void test1() throws SQLException, InterruptedException{
 		dataSource.getConnection();
-		Thread.sleep(3600*1000L);
+		TimeUnit.HOURS.sleep(24);
 	}
 
 }
