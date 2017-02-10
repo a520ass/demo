@@ -4,7 +4,7 @@
 	<!-- Context ConfigLocation -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:/spring-context-dubbo.xml,classpath*:/spring-context-shiro.xml</param-value>
+		<param-value>classpath*:/dubbo-consumer.xml,classpath*:/spring-context-shiro.xml</param-value>
 	</context-param>
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

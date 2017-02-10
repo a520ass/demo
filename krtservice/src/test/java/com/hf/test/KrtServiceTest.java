@@ -1,4 +1,4 @@
-
+package com.hf.test;
 
 
 import java.sql.SQLException;
@@ -13,18 +13,18 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-context-mybatis.xml"})
+@ContextConfiguration(locations={"classpath:spring-context-mybatis.xml","classpath:dubbo-provider.xml"})
 @TestPropertySource({"classpath:application.properties"})
-public class MybatisTest{
+public class KrtServiceTest{
 	
 	@Autowired
 	private DataSource dataSource;
 	
 	
-	
 	@Test
-	public void test1() throws SQLException{
+	public void test1() throws SQLException, InterruptedException{
 		dataSource.getConnection();
+		Thread.sleep(3600*1000L);
 	}
 
 }
