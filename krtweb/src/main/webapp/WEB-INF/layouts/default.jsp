@@ -107,7 +107,7 @@
                                     <a href="${ctx}/user">用户管理</a>
                                 </li>
                                 <li>
-                                    <a href="#">角色管理</a>
+                                    <a href="${ctx}/role">角色管理</a>
                                 </li>
                                 <li>
                                     <a href="#">Third Level <span class="fa arrow"></span></a>

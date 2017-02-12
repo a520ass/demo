@@ -48,4 +48,9 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
 	User selectByUsername(String username);
+	
+	List<Integer> selectUserId(List<Integer> ids);
+	List<User> selectAllIn(List<Integer> ids);
+
+	void deleteByRoleId(Long roleId);
 }

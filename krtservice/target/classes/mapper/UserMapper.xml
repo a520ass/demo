@@ -95,4 +95,25 @@
   <select id="selectByUsername" resultType="User">
   	select * from user where username=#{username}
   </select>
+  
+  <select id="selectUserId" resultType="List">
+  	select user_id from user_role where role_id in
+  					<foreach item="item" index="index" collection="list" 
+	                         open="(" separator="," close=")">
+	                        #{item}
+	                </foreach>
+  </select>
+  
+  <select id="selectAllIn" resultType="User">
+  	select id, no, username, password, salt, name, email, phone, create_user, create_date, 
+    update_user, update_date, sort from user where id in
+  					<foreach item="item" index="index" collection="list" 
+	                         open="(" separator="," close=")">
+	                        #{item}
+	                </foreach>
+  </select>
+  
+  <update id="deleteByRoleId">
+  	delete from user_role where role_id = #{roleId}
+  </update>
 </mapper>
