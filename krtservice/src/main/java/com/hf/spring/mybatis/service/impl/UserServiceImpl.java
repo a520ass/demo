@@ -1,5 +1,7 @@
 package com.hf.spring.mybatis.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,16 +20,27 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User findUserByUsername(String username){
-		return userMapper.findByUsername(username);
+		return userMapper.selectByUsername(username);
 	}
 
 	@Override
-	public void save(User user) {
-		userMapper.save(user);
+	public List<User> getAllUser() {
+		return userMapper.selectAll();
 	}
 
 	@Override
-	public void delete(User user) {
-		userMapper.delete(user);
+	public User getUser(Integer id) {
+		return userMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		userMapper.updateByPrimaryKey(user);
+	}
+
+	@Override
+	public void deleteUser(Integer id) {
+		userMapper.deleteByPrimaryKey(id);
+		
 	}
 }

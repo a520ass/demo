@@ -16,18 +16,18 @@ public class SystemController {
 	
 	@RequestMapping(value="/sys/f")
 	public String index(){
-		return "sys/index";
+		return "pages/index";
 	}
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
 	public String login() {
-		return "sys/login";
+		return "pages/login";
 	}
 
 	@RequestMapping(value="/login",method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, Model model) {
 		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);
-		return "sys/login";
+		return "pages/login";
 	}
 }
 

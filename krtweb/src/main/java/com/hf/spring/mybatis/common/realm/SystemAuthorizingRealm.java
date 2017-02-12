@@ -86,13 +86,26 @@ public class SystemAuthorizingRealm extends AuthorizingRealm{
 	@Test
 	public void test1(){
 		String algorithmName="MD5";
-		String username="superadmin";
+		String username="hefeng";
 		String credentials ="admin";//密码
 		String saltsource=UUID.randomUUID().toString();//数据库salt值
 		Object salt=new Md5Hash("Hf++cllove"+username+credentials+saltsource);
 		int hashIterations=1024;
 		Object result=new SimpleHash(algorithmName,credentials, salt, hashIterations);
 		System.out.println(result.toString());//数据库密码
+	}
+	
+	public static void encrypt(User user){
+		String algorithmName="MD5";
+		String username=user.getUsername();
+		String credentials =user.getPassword();//原始密码
+		String saltsource=UUID.randomUUID().toString();//数据库salt值
+		Object salt=new Md5Hash("Hf++cllove"+username+credentials+saltsource);
+		int hashIterations=1024;
+		Object result=new SimpleHash(algorithmName,credentials, salt, hashIterations);
+		//System.out.println(result.toString());//数据库密码
+		user.setSalt(saltsource);
+		user.setPassword(result.toString());
 	}
 
 }

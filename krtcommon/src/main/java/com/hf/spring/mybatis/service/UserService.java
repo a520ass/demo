@@ -1,10 +1,14 @@
 package com.hf.spring.mybatis.service;
 
+import java.util.List;
+
 import com.hf.spring.mybatis.entity.User;
 
 public interface UserService {
 	
-	public void save(User user);
 	public User findUserByUsername(String username);
-	public void delete(User user);
+	List<User> getAllUser();
+	User getUser(Integer id);
+	void updateUser(User user);
+	void deleteUser(Integer id);
 }
