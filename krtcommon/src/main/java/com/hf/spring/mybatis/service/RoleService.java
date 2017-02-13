@@ -14,4 +14,6 @@ public interface RoleService {
 	
 	List<User> getUsersByRoleId(List<Integer> ids);
 	void allocatedusersave(Long roleId, Long[] userids);
+	
+	List<Integer> getMenuIdsByRoleId(List<Integer> ids);
 }

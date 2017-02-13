@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hf.spring.mybatis.entity.Menu;
 import com.hf.spring.mybatis.entity.Role;
 import com.hf.spring.mybatis.entity.User;
+import com.hf.spring.mybatis.service.MenuService;
 import com.hf.spring.mybatis.service.RoleService;
 import com.hf.spring.mybatis.service.UserService;
 
@@ -32,6 +34,7 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 	@Autowired UserService userService;
+	@Autowired MenuService menuService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
@@ -40,11 +43,26 @@ public class RoleController {
 
 		return "pages/roleList";
 	}
+	
+	@RequestMapping(value = "create", method = RequestMethod.GET)
+	public String createForm(Model model) {
+		model.addAttribute("role", new Role());
+		model.addAttribute("action", "create");
+		return "pages/roleForm";
+	}
+
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	public String create(@Valid Role role, RedirectAttributes redirectAttributes) {
+		roleService.updateRole(role);
+		redirectAttributes.addFlashAttribute("message", "创建角色成功");
+		return "redirect:/role";
+	}
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Integer id, Model model) {
 		Role role = roleService.getRole(id);
 		model.addAttribute("role", role);
+		model.addAttribute("action", "update");
 		return "pages/roleForm";
 	}
 
@@ -65,6 +83,7 @@ public class RoleController {
 			userService.deleteUser(id);
 			redirectAttributes.addFlashAttribute("message", "删除用户" + user.getUsername() + "成功");
 		}*/
+		redirectAttributes.addFlashAttribute("message", "当前版本未实现");
 		
 		return "redirect:/role";
 	}
@@ -96,6 +115,19 @@ public class RoleController {
 		}
 		
 		return flag;
+	}
+	
+	@RequestMapping(value="/menu/get/{roleid}", method = RequestMethod.GET)
+	@ResponseBody
+	public  List<Menu> getMenu(@PathVariable("roleid") Integer id) {
+		List<Menu> menus = menuService.getAllMenu();
+		List<Menu> list = new ArrayList<Menu>();
+		MenuController.sortList(list, menus, 0, true);
+		List<Integer> ids=new ArrayList<>();
+		ids.add(id);
+		List<Integer> currentMenuIds = roleService.getMenuIdsByRoleId(ids);
+		MenuController.wrapZtreeData(currentMenuIds, list);
+		return list;
 	}
 
 	/**

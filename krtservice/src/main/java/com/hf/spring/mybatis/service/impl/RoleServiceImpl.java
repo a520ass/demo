@@ -1,6 +1,8 @@
 package com.hf.spring.mybatis.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +37,13 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public void updateRole(Role Role) {
-		roleMapper.updateByPrimaryKey(Role);
+	public void updateRole(Role role) {
+		if(role.getId()==null){
+			roleMapper.insert(role);
+		}else{
+			roleMapper.updateByPrimaryKey(role);
+		}
+		
 	}
 
 	@Override
@@ -47,12 +54,20 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public List<User> getUsersByRoleId(List<Integer> ids) {
 		List<Integer> userIds = userMapper.selectUserId(ids);
-		return userMapper.selectAllIn(userIds);
+		if(userIds.size()>0){
+			return userMapper.selectAllIn(userIds);
+		}
+		return new ArrayList<User>();
 	}
 
 	@Override
 	public void allocatedusersave(Long roleId, Long[] userids) {
 		userMapper.deleteByRoleId(roleId);
 		batchDao.assign(roleId, userids);
+	}
+
+	@Override
+	public List<Integer> getMenuIdsByRoleId(List<Integer> ids) {
+		return roleMapper.selectMenuId(ids);
 	}
 }

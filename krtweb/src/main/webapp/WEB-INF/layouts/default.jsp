@@ -101,7 +101,7 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 菜单 <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 系统管理 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="${ctx}/user">用户管理</a>
@@ -161,6 +161,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="${ctxStatic}/dist/js/sb-admin-2.js"></script>
+    
+    <script src="${ctxStatic}/treeTable/jquery.treeTable.js"></script>
+    <script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>
 
 </body>
 

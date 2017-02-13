@@ -50,6 +50,8 @@
                         </table>
                     </div>
                     <!-- /.table-responsive -->
+                    <div><a class="btn btn-primary btn-sm" id="allocatedusersave" href="#">保存分配信息</a>&nbsp;<a class="btn btn-default btn-sm" id="back" href="#">返回</a></div>
+	
                 </div>
                 <!-- /.panel-body -->
             </div>
@@ -59,9 +61,8 @@
     </div>
 	
 	
-	
-	<div><a class="btn" id="allocatedusersave" >保存分配信息</a> <a class="btn" id="back" >返回</a></div><div></div>
-	
+	<!-- <div><input class="btn btn-primary btn-sm" id="allocatedusersave" value="保存分配信息" /><input class="btn btn-sm" id="back" value="返回" /></div><div></div>
+	 -->
 	<table class="table table-striped table-bordered table-condensed" style="display: none">
 		<thead><tr><th>选择</th></tr></thead>
 		<tbody>
@@ -72,12 +73,14 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	<!-- jQuery -->
+    <script src="${ctxStatic}/bower_components/jquery/dist/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			//聚焦第一个输入框
-			$("#dept_departmentNo").focus();
+			//$("#dept_departmentNo").focus();
 			//为inputForm注册validate函数
-			$("#inputForm").validate();
+			//$("#inputForm").validate();
 			var deptpositions=document.getElementsByName("cuserid");//当前已经选择了的
 			//console.log(deptpositions);
 			var positionids=document.getElementsByName("userid");
@@ -107,13 +110,13 @@
 				}
 				console.log(posisionidarray);
 				$.ajax({
-	                url: "${ctx}/dept/allocatedpositionsave",
+	                url: "${ctx}/role/allocatedpositionsave",
 	                type: "POST",  
 	               // contentType: "application/json;charset=utf-8",//设置内容的类型
 	                //dataType: "json",//设置返回data的类型
 				     data:{   //需要传入的参数
-						"departmentId":departmentid,
-						"positionids":posisionidarray
+						"roleId":departmentid,
+						"userids":posisionidarray
 				     },
 	                success: function(data) {
 	                   // alert(data);

@@ -15,7 +15,9 @@
 
  <!-- 在MBG工作的时候，需要额外加载的依赖包
      location属性指明加载jar/zip包的全路径-->
-<classPathEntry location="D:/Users/520/mvnRespo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" />
+     <!-- D:/Users/520/mvnRespo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar -->
+     
+<classPathEntry location="C:/Users/krt/.m2/repository/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar" />
   
 
 <!-- 
@@ -50,7 +52,7 @@
     <!-- 必须要有的，使用这个配置链接数据库
         @TODO:是否可以扩展
      -->
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/demo1" userId="root" password="hf0321">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/demo1" userId="root" password="">
         <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
     </jdbcConnection>
 

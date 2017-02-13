@@ -19,6 +19,7 @@
     <!-- 声明需要暴露的服务接口 -->  
     <dubbo:service interface="com.hf.spring.mybatis.service.UserService" ref="userServiceImpl" />  
    	<dubbo:service interface="com.hf.spring.mybatis.service.RoleService" ref="roleServiceImpl"></dubbo:service>
+   	<dubbo:service interface="com.hf.spring.mybatis.service.MenuService" ref="menuServiceImpl"></dubbo:service>
     <!-- 和本地bean一样实现服务 -->  
     <!-- <bean id="demoService" class="com.znn.provider.DemoServiceImpl" />   -->
 </beans> 

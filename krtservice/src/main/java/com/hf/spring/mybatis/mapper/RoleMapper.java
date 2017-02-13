@@ -45,4 +45,11 @@ public interface RoleMapper {
      * @mbg.generated Sun Feb 12 08:29:44 CST 2017
      */
     int updateByPrimaryKey(Role record);
+    
+    /**
+     * 根据role id集合查询菜单id集合
+     * @param ids
+     * @return
+     */
+    List<Integer> selectMenuId(List<Integer> ids);
 }

@@ -1,0 +1,15 @@
+# Maven #
+target/
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.externalToolBuilders/
+.settings/
+.classpath
+.project
+.springBeans
+.apt_generated
+.factorypath

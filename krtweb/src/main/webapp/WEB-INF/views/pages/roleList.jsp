@@ -60,6 +60,7 @@
                         </table>
                     </div>
                     <!-- /.table-responsive -->
+                    <div><a class="btn btn-primary btn-sm" href="${ctx}/role/create">新增角色</a></div>
                 </div>
                 <!-- /.panel-body -->
             </div>

@@ -13,5 +13,6 @@
     
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->  
     <dubbo:reference id="userService" interface="com.hf.spring.mybatis.service.UserService" /> 
-    <dubbo:reference id="roleService" interface="com.hf.spring.mybatis.service.RoleService" />  
+    <dubbo:reference id="roleService" interface="com.hf.spring.mybatis.service.RoleService" /> 
+    <dubbo:reference id="menuService" interface="com.hf.spring.mybatis.service.MenuService" />   
 </beans>  

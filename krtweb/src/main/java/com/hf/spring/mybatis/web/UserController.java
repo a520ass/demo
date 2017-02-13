@@ -31,7 +31,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequiresPermissions(value = { "sys:user:view" })
+	//@RequiresPermissions(value = { "sys:user:view" })
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
 		List<User> users = userService.getAllUser();

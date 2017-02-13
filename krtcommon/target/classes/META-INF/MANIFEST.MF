@@ -1,3 +1,11 @@
 Manifest-Version: 1.0
-Class-Path: 
+Implementation-Title: krtcommon
+Implementation-Version: 0.0.1
+Built-By: krt
+Implementation-Vendor-Id: com.cnkrt
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/demo/krtcomm
+ on/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
 

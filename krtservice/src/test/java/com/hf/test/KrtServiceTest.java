@@ -2,6 +2,8 @@ package com.hf.test;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
@@ -13,7 +15,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hf.spring.mybatis.entity.User;
 import com.hf.spring.mybatis.mapper.RoleMapper;
+import com.hf.spring.mybatis.mapper.UserMapper;
+import com.hf.spring.mybatis.service.RoleService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring-context-mybatis.xml","classpath:dubbo-provider.xml"})
@@ -23,6 +28,8 @@ public class KrtServiceTest{
 	@Autowired
 	private DataSource dataSource;
 	@Autowired RoleMapper roleMapper;
+	@Autowired UserMapper userMapper;
+	@Autowired RoleService roleService;
 	
 	@Test
 	public void test1() throws SQLException, InterruptedException{
@@ -32,7 +39,10 @@ public class KrtServiceTest{
 	
 	@Test
 	public void test2(){
-		System.out.println( roleMapper.selectAll().get(1).getId());
+		List<Integer> arrayList = new ArrayList<Integer>();
+		arrayList.add(1);
+		List<User> usersByRoleId = roleService.getUsersByRoleId(arrayList);
+		System.out.println(usersByRoleId);
 	}
 
 }
