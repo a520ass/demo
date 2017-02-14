@@ -135,7 +135,6 @@
             type: "get",  
             async: false,
 		     success: function(data) {
-		    	 //var showlist = $("<ul></ul>");
 		    	 var showlist = $("<ul class=\"nav in\" id=\"side-menu\"></ul>");
 		    	 showall(data['childMenus'],showlist);
 		    	 $("#div_menu").append(showlist);

@@ -18,7 +18,7 @@
 	
 	<!-- 定义Shiro安全管理配置 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="cacheManager" ref="shiroCacheManager" />
+		<!-- <property name="cacheManager" ref="shiroCacheManager" /> -->
 		<property name="sessionManager" ref="sessionManager"></property>
 		<!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
 		<property name="realm" ref="systemAuthorizingRealm" />
@@ -52,10 +52,10 @@
 	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
 		<property name="activeSessionsCacheName" value="shiro-activeSessionCache"></property>
 	</bean>
-	<!-- 定义授权缓存管理器 -->
+	<!-- 定义授权缓存管理器 
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache.xml"/> 
-    </bean>
+    </bean>-->
     
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

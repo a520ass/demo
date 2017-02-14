@@ -68,10 +68,6 @@
 				$.fn.zTree.init($("#ztree"), setting, data).expandAll(true);
 			});
 			
-			$("#back").click(function(){
-				window.history.back();
-			});
-			
 			
 			$("#allocatedmenusave").click(function(){
 				var treeObj = $.fn.zTree.getZTreeObj("ztree");

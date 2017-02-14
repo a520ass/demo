@@ -25,6 +25,7 @@
     <c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
+	<div id="message1" class="alert alert-success" style="display: none"></div>
 	<p>当前分配用户的角色为：${role.name}</p>
 	<input id="roleid" style="display: none" value="${role.id}"/>
     <div class="row">
@@ -50,7 +51,7 @@
                         </table>
                     </div>
                     <!-- /.table-responsive -->
-                    <div><a class="btn btn-primary btn-sm" id="allocatedusersave" href="#">保存分配信息</a>&nbsp;<a class="btn btn-default btn-sm" id="back" href="#">返回</a></div>
+                    <div><a class="btn btn-primary btn-sm" id="allocatedusersave" href="javascript:">保存分配信息</a>&nbsp;<a class="btn btn-default btn-sm" id="back" href="${ctx }/role">返回</a></div>
 	
                 </div>
                 <!-- /.panel-body -->
@@ -119,8 +120,8 @@
 						"userids":posisionidarray
 				     },
 	                success: function(data) {
-	                   // alert(data);
-	                   window.history.back();
+	                	$("#message1").html("<button data-dismiss=\"alert\" class=\"close\">×</button>分配用户成功,请先注销后再登陆生效");
+		                   $("#message1").css('display','block'); 
 	                },
 	                error: function() {
 	                    alert("系统发生异常，请稍候再试！\n\n有任何疑问，请联系系统管理员！");
