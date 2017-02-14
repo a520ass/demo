@@ -86,4 +86,17 @@
     from menu
     order by sort asc
   </select>
+  
+  <select id="selectAllIn" resultMap="BaseResultMap">
+  	select id, parent_id, parent_ids, name, href, is_show, permission, create_user, create_date, 
+    update_user, update_date, sort from menu where id in
+  					<foreach item="item" index="index" collection="list" 
+	                         open="(" separator="," close=")">
+	                        #{item}
+	                </foreach>
+  </select>
+  
+  <update id="deleteByRoleId">
+  	delete from role_menu where role_id = #{roleId}
+  </update>
 </mapper>

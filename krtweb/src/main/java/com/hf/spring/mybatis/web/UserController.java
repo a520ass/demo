@@ -26,12 +26,13 @@ import com.hf.spring.mybatis.service.UserService;
  */
 @Controller
 @RequestMapping(value = "/user")
+@RequiresPermissions(value = { "sys:user:mgr" })
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
-	//@RequiresPermissions(value = { "sys:user:view" })
+	@RequiresPermissions(value = { "sys:user:view" })
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
 		List<User> users = userService.getAllUser();
@@ -39,7 +40,8 @@ public class UserController {
 
 		return "pages/userList";
 	}
-
+	
+	@RequiresPermissions(value = { "sys:user:edit" })
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Integer id, Model model) {
 		User user = userService.getUser(id);
@@ -47,7 +49,8 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "pages/userForm";
 	}
-
+	
+	@RequiresPermissions(value = { "sys:user:edit" })
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
 		User dbUser = userService.getUser(user.getId());
@@ -61,7 +64,8 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", "更新用户" + user.getUsername() + "成功");
 		return "redirect:/user";
 	}
-
+	
+	@RequiresPermissions(value = { "sys:user:delete" })
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		User user = userService.getUser(id);

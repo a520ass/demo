@@ -52,10 +52,10 @@
 									<input type="text" value="${role.name}" name="name" class="form-control" />
 								</div>
 								
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<span>菜单权限：</span>
 									<div id="ztree" class="ztree"></div>
-								</div>
+								</div> -->
 								
 								
 								<div class="form-actions">
@@ -78,28 +78,7 @@
     <script src="${ctxStatic}/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>
     
     <script type="text/javascript">
-    $(document).ready(function(){
-    	var setting = {check:{enable:true,nocheckInherit:true},view:{selectedMulti:true},data:{simpleData:{enable:true,idKey:"id",pIdKey:"parentId",rootPId:'0'}},
-				callback:{onClick:function(event, treeId, treeNode){
-						var id = treeNode.id == '0' ? '' :treeNode.id;
-						//$('#officeContent').attr("src","${ctx}/sys/user/list?office.id="+id+"&office.name="+treeNode.name);
-					}
-				}
-			};
-		/* var data =[
-				{ id:1, pId:0, name:"SO"},
-		         { id:11, pId:1, name:"SO-E1"},
-		         { id:111, pId:11, name:"SO-E1-S1"},
-		         { id:112, pId:11, name:"SO-E1-S2"},
-		         { id:12, pId:1, name:"SO-E11"},
-		         { id:121, pId:12, name:"SO-E11-S11"},
-		         { id:122, pId:12, name:"SO-E11-S22"}
-		      ] */
-		var roleid=$("#roleid").value();
-		$.getJSON("${ctx}/role/menu/get/"+roleid,function(data){
-			$.fn.zTree.init($("#ztree"), setting, data).expandAll(true);
-		});
-    });
+    
     </script>
 </body>
 

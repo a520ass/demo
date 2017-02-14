@@ -3,7 +3,10 @@ package com.hf.spring.mybatis.mapper;
 import com.hf.spring.mybatis.MyBatisDao;
 import com.hf.spring.mybatis.entity.User;
 
+import java.util.Date;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 @MyBatisDao
 public interface UserMapper {
@@ -50,7 +53,10 @@ public interface UserMapper {
 	User selectByUsername(String username);
 	
 	List<Integer> selectUserId(List<Integer> ids);
+	List<Integer> selectRoleId(List<Integer> ids);
 	List<User> selectAllIn(List<Integer> ids);
 
 	void deleteByRoleId(Long roleId);
+
+	void updateLastLoginDate(@Param("username") String username, @Param("date") Date date);
 }

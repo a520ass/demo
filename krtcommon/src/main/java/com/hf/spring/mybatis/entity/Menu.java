@@ -1,7 +1,10 @@
 package com.hf.spring.mybatis.entity;
 
 import com.hf.spring.mybatis.entity.base.DataEntity;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +13,11 @@ public class Menu extends DataEntity {
 	/**
 	 * 下级菜单
 	 */
-	private List<Menu> childMenus;
+	private List<Menu> childMenus=new ArrayList<Menu>();
 	/**
 	 * 第几级菜单
 	 */
-	private int level;
+	private String level;
 	
 	private Map<String,String> isShowDict;
 	/**
@@ -426,11 +429,14 @@ public class Menu extends DataEntity {
 		this.childMenus = childMenus;
 	}
 
-	public int getLevel() {
-		return this.parentIds.split(",").length-1;
+	public String getLevel() {
+		if(this.parentIds==null){
+			this.parentIds="0,";
+		}
+		return levelEnglish.get(this.parentIds.split(",").length);
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -448,5 +454,15 @@ public class Menu extends DataEntity {
 
 	public void setChecked(boolean checked) {
 		this.checked = checked;
+	}
+	
+	public static final Map<Integer,String> levelEnglish=new HashMap<Integer, String>();
+	
+	static{
+		levelEnglish.put(1, "first");
+		levelEnglish.put(2, "second");
+		levelEnglish.put(3, "third");
+		levelEnglish.put(4, "four");
+		levelEnglish.put(5, "five");
 	}
 }

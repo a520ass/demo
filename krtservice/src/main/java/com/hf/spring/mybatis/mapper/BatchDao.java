@@ -32,4 +32,22 @@ public class BatchDao {
 		};
 		jdbcTemplate.batchUpdate(sql, pss);
 	}
+
+	public void assignMenu(Long roleId, Long[] menuIds) {
+		String sql = "INSERT INTO role_menu (menu_id, role_id) VALUES (?, ?)";
+		BatchPreparedStatementSetter pss=new BatchPreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setLong(1, menuIds[i]);
+				ps.setLong(2, roleId);
+			}
+			
+			@Override
+			public int getBatchSize() {
+				return menuIds.length;
+			}
+		};
+		jdbcTemplate.batchUpdate(sql, pss);
+	}
 }

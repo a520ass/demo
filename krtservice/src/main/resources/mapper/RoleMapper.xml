@@ -75,7 +75,7 @@
     order by sort asc
   </select>
   
-  <select id="selectUserId" resultType="Integer">
+  <select id="selectMenuId" resultType="Integer">
   	select menu_id from role_menu where role_id in
   					<foreach item="item" index="index" collection="list" 
 	                         open="(" separator="," close=")">

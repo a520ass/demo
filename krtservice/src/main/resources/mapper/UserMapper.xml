@@ -104,6 +104,14 @@
 	                </foreach>
   </select>
   
+  <select id="selectRoleId" resultType="Integer">
+  	select role_id from user_role where user_id in
+  					<foreach item="item" index="index" collection="list" 
+	                         open="(" separator="," close=")">
+	                        #{item}
+	                </foreach>
+  </select>
+  
   <select id="selectAllIn" resultMap="BaseResultMap">
   	select id, no, username, password, salt, name, email, phone, create_user, create_date,update_user, update_date, sort from user where id in
   					<foreach item="item" index="index" collection="list" 
@@ -114,5 +122,9 @@
   
   <update id="deleteByRoleId">
   	delete from user_role where role_id = #{roleId}
+  </update>
+  
+  <update id="updateLastLoginDate">
+  	update user set update_date=#{date} where username = #{username}
   </update>
 </mapper>

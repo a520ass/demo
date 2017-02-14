@@ -2,6 +2,7 @@ package com.hf.spring.mybatis.mapper;
 
 import com.hf.spring.mybatis.MyBatisDao;
 import com.hf.spring.mybatis.entity.Menu;
+import com.hf.spring.mybatis.entity.User;
 
 import java.util.List;
 @MyBatisDao
@@ -45,4 +46,7 @@ public interface MenuMapper {
      * @mbg.generated Sun Feb 12 08:43:41 CST 2017
      */
     int updateByPrimaryKey(Menu record);
+
+	void deleteByRoleId(Long roleId);
+	List<Menu> selectAllIn(List<Integer> ids);
 }

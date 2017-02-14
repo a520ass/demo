@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hf.spring.mybatis.entity.Role;
 import com.hf.spring.mybatis.entity.User;
 import com.hf.spring.mybatis.mapper.BatchDao;
+import com.hf.spring.mybatis.mapper.MenuMapper;
 import com.hf.spring.mybatis.mapper.RoleMapper;
 import com.hf.spring.mybatis.mapper.UserMapper;
 import com.hf.spring.mybatis.service.RoleService;
@@ -23,6 +24,7 @@ public class RoleServiceImpl implements RoleService{
 	@Autowired
 	private RoleMapper roleMapper;
 	@Autowired UserMapper userMapper;
+	@Autowired MenuMapper menuMapper;
 	@Autowired BatchDao batchDao;
 	
 
@@ -63,11 +65,23 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public void allocatedusersave(Long roleId, Long[] userids) {
 		userMapper.deleteByRoleId(roleId);
-		batchDao.assign(roleId, userids);
+		if(userids!=null){
+			batchDao.assign(roleId, userids);
+		}
+		
 	}
 
 	@Override
 	public List<Integer> getMenuIdsByRoleId(List<Integer> ids) {
 		return roleMapper.selectMenuId(ids);
+	}
+
+	@Override
+	public void allocatedmenusave(Long roleId, Long[] menuids) {
+		menuMapper.deleteByRoleId(roleId);
+		if(menuids!=null){
+			batchDao.assignMenu(roleId, menuids);
+		}
+		
 	}
 }

@@ -110,7 +110,7 @@
 				}
 				console.log(posisionidarray);
 				$.ajax({
-	                url: "${ctx}/role/allocatedpositionsave",
+	                url: "${ctx}/role/allocatedusersave",
 	                type: "POST",  
 	               // contentType: "application/json;charset=utf-8",//设置内容的类型
 	                //dataType: "json",//设置返回data的类型

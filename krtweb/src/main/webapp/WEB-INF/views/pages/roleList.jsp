@@ -53,6 +53,7 @@
 										<td>${role.name}</td>
 										
 										<td><a href="${ctx}/role/allocateduser/${role.id}">分配用户</a>
+										<a href="${ctx}/role/allocatedmenu/${role.id}">分配菜单</a>
 										<a href="${ctx}/role/delete/${role.id}">删除</a></td>
 									</tr>
                             	</c:forEach>
