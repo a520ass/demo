@@ -57,6 +57,7 @@ public interface UserMapper {
 	List<User> selectAllIn(List<Integer> ids);
 
 	void deleteByRoleId(Long roleId);
+	void deleteByUserId(Integer userId);
 
 	void updateLastLoginDate(@Param("username") String username, @Param("date") Date date);
 }

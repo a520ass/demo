@@ -124,6 +124,10 @@
   	delete from user_role where role_id = #{roleId}
   </update>
   
+  <update id="deleteByUserId">
+  	delete from user_role where user_id = #{userId}
+  </update>
+  
   <update id="updateLastLoginDate">
   	update user set update_date=#{date} where username = #{username}
   </update>
