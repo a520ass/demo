@@ -84,4 +84,16 @@ public class RoleServiceImpl implements RoleService{
 		}
 		
 	}
+	
+	/**
+	 * 0 可以删除
+	 * 1 已和用户关联
+	 * 2 已和菜单关联
+	 * 3 同时与用户和菜单关联
+	 */
+	@Override
+	public int deleteRoleCheck(Integer id) {
+		
+		return 0;
+	}
 }

@@ -91,7 +91,7 @@
 			<value>
 				/login = authc
 				/logout = logout
-				/register=anon
+				/register/**=anon
 				/static/** = anon
 				/userfiles/** = anon
 				/**=user

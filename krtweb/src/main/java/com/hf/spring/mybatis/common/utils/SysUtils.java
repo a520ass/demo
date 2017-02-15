@@ -10,7 +10,6 @@ import org.springframework.cache.CacheManager;
 import com.hf.spring.mybatis.entity.Menu;
 import com.hf.spring.mybatis.service.MenuService;
 import com.hf.spring.mybatis.service.RoleService;
-import com.hf.spring.mybatis.web.MenuController;
 
 public class SysUtils {
 	

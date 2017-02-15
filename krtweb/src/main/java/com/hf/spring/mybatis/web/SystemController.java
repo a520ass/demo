@@ -81,6 +81,13 @@ public class SystemController {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping(value="/register/check",method = RequestMethod.GET)
+	@ResponseBody
+	public boolean registerCheck(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM)String username) {
+		boolean flag=userService.findUserByUsername(username)==null?true:false;
+		return flag;
+	}
+	
 	@RequiresRoles(value = { "user" })
 	@RequestMapping(value="/menu/navigation/get", method = RequestMethod.GET)
 	@ResponseBody

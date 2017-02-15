@@ -3,6 +3,7 @@ package com.hf.spring.mybatis.web;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler{
 	public void sysData(Model model) {
 		//应用到所有@RequestMapping注解方法，在其执行之前把返回值放入Model
 		model.addAttribute("sysroot", "krtweb");
+	}
+	
+	@ExceptionHandler(UnauthorizedException.class)
+	public String processUnauthorizedException(Exception e, HttpServletRequest request) {
+		return "error/403";
 	}
 	
 	@ExceptionHandler(Exception.class)

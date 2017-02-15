@@ -87,6 +87,7 @@ public class RoleController {
 	@RequiresPermissions(value = { "sys:role:delete" })
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		roleService.deleteRoleCheck(id);
 		/*User user = userService.getUser(id);
 		if(SecurityUtils.getSubject().getPrincipal().equals(user.getUsername())){
 			redirectAttributes.addFlashAttribute("message", "不能删掉当前登陆的用户" + user.getUsername());

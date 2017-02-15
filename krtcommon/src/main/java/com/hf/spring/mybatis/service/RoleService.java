@@ -17,4 +17,5 @@ public interface RoleService {
 	
 	List<Integer> getMenuIdsByRoleId(List<Integer> ids);
 	void allocatedmenusave(Long roleId, Long[] menuids);
+	int deleteRoleCheck(Integer id);
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hf.spring.mybatis.common.utils.SysUtils;
+import com.hf.spring.mybatis.common.utils.UserUtils;
 import com.hf.spring.mybatis.entity.Menu;
 import com.hf.spring.mybatis.entity.Role;
 import com.hf.spring.mybatis.entity.User;
@@ -48,7 +49,7 @@ public class MenuController {
 		Menu parentMenu = menuService.getMenu(id);
 		Menu menu = new Menu();
 		menu.setParentId(String.valueOf(parentMenu.getId()));
-		menu.setParentIds(parentMenu.getParentIds()+parentMenu.getId());
+		menu.setParentIds(parentMenu.getParentIds()+parentMenu.getId()+",");
 		Map<String, String> isShowDict=new HashMap<>();
 		isShowDict.put("0", "显示");
 		isShowDict.put("1", "隐藏");
@@ -62,6 +63,7 @@ public class MenuController {
 	public String create(@Valid Menu menu, RedirectAttributes redirectAttributes) {
 		menuService.updateMenu(menu);
 		SysUtils.getSpringCache(SysUtils.SYS_CACHE).evict(SysUtils.CACHE_MENU_LIST);
+		UserUtils.removeCache(UserUtils.CACHE_MENU_N);
 		redirectAttributes.addFlashAttribute("message", "创建菜单成功");
 		return "redirect:/menu";
 	}
@@ -83,6 +85,7 @@ public class MenuController {
 	public String update(@Valid Menu menu, RedirectAttributes redirectAttributes) {
 		menuService.updateMenu(menu);
 		SysUtils.getSpringCache(SysUtils.SYS_CACHE).evict(SysUtils.CACHE_MENU_LIST);
+		UserUtils.removeCache(UserUtils.CACHE_MENU_N);
 		redirectAttributes.addFlashAttribute("message", "修改菜单成功");
 		return "redirect:/menu";
 	}

@@ -51,6 +51,7 @@ public class MyServletListener implements ServletContextListener,HttpSessionList
 
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
+		//当使用原生的session的时候，才能监听到
 		logger.info("HttpSessionEvent创建。。");
 	}
 
@@ -58,7 +59,10 @@ public class MyServletListener implements ServletContextListener,HttpSessionList
 	public void sessionDestroyed(HttpSessionEvent se) {
 		logger.info("HttpSessionEvent销毁。。");
 	}
-
+	
+	/**
+	 * 销毁jdbc
+	 */
 	private void destroyJDBCDrivers() {
 		final Enumeration<Driver> drivers = DriverManager.getDrivers();
 		Driver driver;

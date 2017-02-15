@@ -9,6 +9,9 @@
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+        <listener-class>com.hf.spring.mybatis.common.listener.MyServletListener</listener-class>
+	</listener>
 	
 	<!-- 编码过滤器 对get无效(必须配置在所有过滤器的最前面) -->
 	<filter>

@@ -51,16 +51,19 @@
                         <h3 class="panel-title">请注册</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="${ctx}/register" method="post">
+                        <form role="form" action="${ctx}/register" method="post" id="registerForm">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="用户名" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="用户名" name="username" id="username" type="text" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="显示名" name="name" type="text" autofocus>
+                                    <input class="form-control" placeholder="显示名" name="name" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="密码" name="password" id="password" type="password" value="" required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="再输入一次密码" name="rpassword" type="password">
                                 </div>
                                 <!-- <div class="checkbox">
                                     <label>
@@ -79,6 +82,10 @@
 
     <!-- jQuery -->
     <script src="${ctxStatic}/bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <script src="${ctxStatic}/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+    
+    <script src="${ctxStatic}/bower_components/jquery-validation/src/localization/messages_zh.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${ctxStatic}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -88,6 +95,39 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="${ctxStatic}/dist/js/sb-admin-2.js"></script>
+    
+    <script type="text/javascript">
+    	$("#registerForm").validate({
+    		rules:{
+    			username:{
+    				required:true,
+    				minlength:5,
+    				remote:{                                          //验证用户名是否存在
+    		               type:"get",
+    		               url:"${ctx}/register/check",             //servlet
+    		               data:{
+    		                 username:function(){
+    		                	 return $("#username").val();
+    		                 }
+    		        	   } 
+    				}
+    			},
+    			password: {
+    		        required: true,
+    		        minlength: 5
+    		    },
+    		    rpassword:{
+    		    	equalTo:"#password"
+    		    }
+    		},
+    		 messages: {
+    		      username: {
+    		        remote:"该用户名已经被注册！"
+    		      }
+    		      
+    		}
+    	});
+    </script>
 
 </body>
 
