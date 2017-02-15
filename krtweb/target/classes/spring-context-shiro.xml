@@ -18,7 +18,7 @@
 	
 	<!-- 定义Shiro安全管理配置 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!-- <property name="cacheManager" ref="shiroCacheManager" />  -->
+		<property name="cacheManager" ref="shiroCacheManager" />
 		<property name="sessionManager" ref="sessionManager"></property>
 		<!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
 		<property name="realm" ref="systemAuthorizingRealm" />
@@ -67,10 +67,10 @@
     	<constructor-arg name="cacheManager" ref="ehCacheManager"></constructor-arg>
     </bean>
 	
-	<!-- 定义shiro缓存管理器  使用spring cache包装的
+	<!-- 定义shiro缓存管理器  使用spring cache包装的-->
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.spring.SpringCacheManagerWrapper">
         <property name="cacheManager" ref="ehCachecacheManager"/> 
-    </bean>-->
+    </bean>
     
     
     

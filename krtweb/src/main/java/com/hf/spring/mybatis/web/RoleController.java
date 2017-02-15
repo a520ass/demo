@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hf.spring.mybatis.common.utils.SysUtils;
+import com.hf.spring.mybatis.common.utils.UserUtils;
 import com.hf.spring.mybatis.entity.Menu;
 import com.hf.spring.mybatis.entity.Role;
 import com.hf.spring.mybatis.entity.User;
@@ -118,8 +120,8 @@ public class RoleController {
 	public boolean allocatedUserSave(@RequestParam("roleId")Long roleId,@RequestParam(value="userids[]",required=false)Long[] userids,Model model, RedirectAttributes redirectAttributes) {
 		boolean flag=false;
 		try {
-			
 			roleService.allocatedusersave(roleId, userids);
+			UserUtils.removeCache(UserUtils.CACHE_MENU_N);
 			flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,7 +134,6 @@ public class RoleController {
 	@RequestMapping(value = "allocatedmenu/{id}")
 	public String allocatedMenu(@PathVariable("id") Integer id,Model model, RedirectAttributes redirectAttributes) {
 		Role role = roleService.getRole(id);
-		
 		model.addAttribute("role", role);
 		return "pages/roleAllocatedMenu";
 	}
@@ -144,6 +145,8 @@ public class RoleController {
 		boolean flag=false;
 		try {
 			roleService.allocatedmenusave(roleId, menuids);
+			UserUtils.removeCache(UserUtils.CACHE_MENU_N);
+			SysUtils.getSpringCache(SysUtils.SYS_CACHE).evict(SysUtils.CACHE_MENU_LIST_R+roleId);
 			flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,14 +159,7 @@ public class RoleController {
 	@RequestMapping(value="/menu/get/{roleid}", method = RequestMethod.GET)
 	@ResponseBody
 	public  List<Menu> getMenu(@PathVariable("roleid") Integer id) {
-		List<Menu> menus = menuService.getAllMenu();
-		List<Menu> list = new ArrayList<Menu>();
-		MenuController.sortList(list, menus, 0, true);
-		List<Integer> ids=new ArrayList<>();
-		ids.add(id);
-		List<Integer> currentMenuIds = roleService.getMenuIdsByRoleId(ids);
-		MenuController.wrapZtreeData(currentMenuIds, list);
-		return list;
+		return SysUtils.getMenuListForR(id);
 	}
 	
 

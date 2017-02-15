@@ -21,16 +21,18 @@ import com.hf.spring.mybatis.service.UserService;
 public class UserUtils {
 	
 	public static final String USER_CACHE = "userCache";
+	public static final String SYS_CACHE = "sysCache";
 	public static final String USER_CACHE_ID_ = "id_";
 	
 	public static final String CACHE_AUTH_INFO = "authInfo";
 	public static final String CACHE_ROLE_LIST = "roleList";
 	public static final String CACHE_MENU_N = "menuForN";
+	public static final String CACHE_MENU_LIST_R = "menuListForR";
 	
-	/*public static Cache getCache(String cacheName){
+	public static Cache getSpringCache(String cacheName){
 		CacheManager cacheManager = SpringContextHolder.getBean(CacheManager.class);
 		return cacheManager.getCache(cacheName);
-	}*/
+	}
 	
 	/**
 	 * 加密密码

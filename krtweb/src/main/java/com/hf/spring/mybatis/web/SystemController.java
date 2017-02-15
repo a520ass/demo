@@ -2,6 +2,7 @@ package com.hf.spring.mybatis.web;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +45,6 @@ public class SystemController {
 	@RequiresRoles(value = { "user" })
 	@RequestMapping(value="/sys/f")
 	public String index(Model model){
-		//Object principal = SecurityUtils.getSubject().getPrincipal();
-		//User user = userService.findUserByUsername(UserUtils.getPrincipal().toString());
 		model.addAttribute("user", UserUtils.getUser());
 		return "pages/index";
 	}
@@ -85,13 +85,6 @@ public class SystemController {
 	@RequestMapping(value="/menu/navigation/get", method = RequestMethod.GET)
 	@ResponseBody
 	public  Menu getMenuForNavigation() {
-		/*Object principal = SecurityUtils.getSubject().getPrincipal();
-		User user = userService.findUserByUsername(principal.toString());
-		List<Menu> menus = userService.getCurrentMenu(user.getId());
-		List<Menu> menusForN = MenuTree.wrapMenuForNavigation(menus);
-		MenuTree menuTree = new MenuTree(menusForN);
-		Menu menu = menuTree.recursiveTree(1);//为导航栏构建数结构
-		menuTree.sortMenuForNavigation(menu);*/
 		return UserUtils.getMenuForN();
 	}
 	
