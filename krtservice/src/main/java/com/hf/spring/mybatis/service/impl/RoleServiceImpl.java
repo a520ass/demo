@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -93,7 +94,17 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	public int deleteRoleCheck(Integer id) {
-		
+		List<Integer> ids=Lists.newArrayList();
+		ids.add(id);
+		if(userMapper.selectUserId(ids).size()>0&&roleMapper.selectMenuId(ids).size()>0){
+			return 3;
+		}
+		if(userMapper.selectUserId(ids).size()>0){
+			return 1;
+		}
+		if(roleMapper.selectMenuId(ids).size()>0){
+			return 2;
+		}
 		return 0;
 	}
 }

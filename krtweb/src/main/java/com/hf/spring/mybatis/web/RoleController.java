@@ -87,16 +87,26 @@ public class RoleController {
 	@RequiresPermissions(value = { "sys:role:delete" })
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		roleService.deleteRoleCheck(id);
-		/*User user = userService.getUser(id);
-		if(SecurityUtils.getSubject().getPrincipal().equals(user.getUsername())){
-			redirectAttributes.addFlashAttribute("message", "不能删掉当前登陆的用户" + user.getUsername());
-		}else{
-			userService.deleteUser(id);
-			redirectAttributes.addFlashAttribute("message", "删除用户" + user.getUsername() + "成功");
-		}*/
-		redirectAttributes.addFlashAttribute("message", "当前版本未实现");
-		
+		int roleCheck = roleService.deleteRoleCheck(id);
+		String message = null;
+		switch (roleCheck) {
+			case 0:
+				roleService.deleteRole(id);
+				message="删除角色成功";
+				break;
+			case 1:
+				message="已和用户关联,无法删除";
+				break;
+			case 2:
+				message="已和菜单关联,无法删除";
+				break;
+			case 3:
+				message="同时与用户和菜单关联,无法删除";
+				break;
+			default:
+				break;
+		}
+		redirectAttributes.addFlashAttribute("message", message);
 		return "redirect:/role";
 	}
 	
