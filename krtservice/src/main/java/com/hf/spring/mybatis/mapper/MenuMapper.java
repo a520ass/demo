@@ -49,4 +49,11 @@ public interface MenuMapper {
 
 	void deleteByRoleId(Long roleId);
 	List<Menu> selectAllIn(List<Integer> ids);
+	/**
+     * 根据menu id集合查询角色id集合
+     * @param ids
+     * @return
+     */
+    List<Integer> selectRoleId(List<Integer> ids);
+    Menu selectByPId(Integer id);
 }

@@ -92,9 +92,27 @@ public class MenuController {
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		//menuService.deleteMenu(id);
+		int menuCheck = menuService.deleteMenuCheck(id);
+		String message = null;
+		switch (menuCheck) {
+			case 0:
+				menuService.deleteMenu(id);
+				message="删除菜单成功";
+				break;
+			case 1:
+				message="与角色关联,无法删除";
+				break;
+			case 2:
+				message="有下级菜单,无法删除";
+				break;
+			case 3:
+				message="与角色关联 同时有下级菜单,无法删除";
+				break;
+			default:
+				break;
+		}
+		redirectAttributes.addFlashAttribute("message", message);
 		SysUtils.getSpringCache(SysUtils.SYS_CACHE).evict(SysUtils.CACHE_MENU_LIST);
-		redirectAttributes.addFlashAttribute("message", "当前版本未实现");
 		return "redirect:/menu";
 	}
 	

@@ -16,7 +16,10 @@
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 	
-	<!-- 定义Shiro安全管理配置 -->
+	<!-- 定义Shiro安全管理配置 
+	org.apache.shiro.web.mgt.DefaultWebSecurityManager.setSessionManager(SessionManager) 
+	默认SessionManager为ServletContainerSessionManager 即原生servlet容器的session
+	-->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="cacheManager" ref="shiroCacheManager" />
 		<property name="sessionManager" ref="sessionManager"></property>
