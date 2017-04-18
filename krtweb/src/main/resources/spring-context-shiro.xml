@@ -39,7 +39,7 @@
 		
 		<property name="sessionIdCookie" ref="sessionIdCookie"/>
 		<property name="sessionIdCookieEnabled" value="true"/>
-		<property name="sessionListeners">
+		<property name="sessionListeners"><!-- shiro session监听器 -->
 			<list>
 				<ref bean="shiroSessionListener"/>
 			</list>
