@@ -1,14 +1,6 @@
 package com.hf.spring.mybatis.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.assertj.core.util.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.google.common.collect.Lists;
 import com.hf.spring.mybatis.entity.Role;
 import com.hf.spring.mybatis.entity.User;
 import com.hf.spring.mybatis.mapper.BatchDao;
@@ -16,6 +8,12 @@ import com.hf.spring.mybatis.mapper.MenuMapper;
 import com.hf.spring.mybatis.mapper.RoleMapper;
 import com.hf.spring.mybatis.mapper.UserMapper;
 import com.hf.spring.mybatis.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -94,7 +92,7 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	public int deleteRoleCheck(Integer id) {
-		List<Integer> ids=Lists.newArrayList();
+		List<Integer> ids= Lists.newArrayList();
 		ids.add(id);
 		if(userMapper.selectUserId(ids).size()>0&&roleMapper.selectMenuId(ids).size()>0){
 			return 3;
